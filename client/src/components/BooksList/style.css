@@ -1,9 +1,7 @@
-button.view {
+button {
     float: right;
-}
-
-button.save {
-    float: right;
+    text-decoration: none;
+  
 }
 
 img {

@@ -25,7 +25,7 @@ const Book = ({ book }) => {
       <div className="row" key={book.id}>
           <div className="col">{book.volumeInfo.title}
             <button onClick={() => book.saveBook(book.id)} className="save">Save</button>
-            <button onClick={() => book.viewBook(book.id)} className="view">View</button>
+            <button><a href={book.volumeInfo.infoLink} target="_blank" className="view">View</a></button>
           </div>
       </div>
       <div className="row">  

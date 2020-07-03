@@ -3,6 +3,7 @@ import axios from "axios";
 
 function Search() {
     let API_URL = `https://www.googleapis.com/books/v1/volumes`;
+    // Code to test bookAuthors function:
     // let authors = ['Param', 'Vennila', 'Afrin'];
     // bookAuthors(authors);
     // // Param, Vennila and Afrin
@@ -10,6 +11,9 @@ function Search() {
     // bookAuthors(authors);
 
     const [books, setBooks] = useState({ items: [] });
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+
 
     const [searchTerm, setSearchTerm] = useState('');
     const onInputChange = (e) => {
@@ -17,24 +21,38 @@ function Search() {
     }
 
     const fetchBooks = async () => {
-        // Ajax call to API using Axios
-        const result = await axios.get(`${API_URL}?q=${searchTerm}`);
         // Books result
         //console.log(result.data);
-        setBooks(result.data);
+        // set loading Before API operation starts
+        setLoading(true);
+        setError(false);
+        try {
+                // Ajax call to API using Axios
+            const result = await axios.get(`${API_URL}?q=${searchTerm}`);
+            setBooks(result.data);
+        }
+        catch (error) {
+            setError(true);
+        }
+        // After API operation end
+        setLoading(false);
     }
 
     const bookAuthors = (authors) => {
-        if (authors.length <= 2) {
-            authors = authors.join(' and ');
-        } else if (authors.length > 2) {
-            let lastAuthor = ' and ' + authors.slice(-1);
-            authors.pop();
-            authors = authors.join(', ');
-            authors += lastAuthor;
-        }
-        return authors;
-    };
+		if (authors) {
+			if (authors.length <= 2) {
+				authors = authors.join(" and ");
+			} else if (authors.length > 2) {
+				let lastAuthor = " and " + authors.slice(-1);
+				authors.pop();
+				authors = authors.join(", ");
+				authors += lastAuthor;
+			}
+		} else {
+			authors = "Author not provided";
+		}
+		return authors;
+	};
 
     const onSubmitHandler = (e) => {
         // Prevent browser refreshing after form submission
@@ -53,10 +71,17 @@ function Search() {
                         placeholder="microservice, restful design, etc.,"
                         value={searchTerm}
                         onChange={onInputChange}
+                        required
                     />
                     <button type="submit">Search</button>
                 </label>
+                {
+                    error && <div style={{color: `red`}}>some error occurred, while fetching api</div>
+                }
             </form>
+            {
+                 loading && <div style={{color: `green`}}>fetching books for "<strong>{searchTerm}</strong>"</div>
+            }
             <ul>
                 {
                     books.items.map((book, index) => {

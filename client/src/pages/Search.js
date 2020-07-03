@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import BookSearchForm from "../components/BookSearchForm";
+import Loader from "../components/Loader";
+import BooksList from "../components/BooksList";
 
 function Search() {
     let API_URL = `https://www.googleapis.com/books/v1/volumes`;
@@ -38,21 +41,21 @@ function Search() {
         setLoading(false);
     }
 
-    const bookAuthors = (authors) => {
-		if (authors) {
-			if (authors.length <= 2) {
-				authors = authors.join(" and ");
-			} else if (authors.length > 2) {
-				let lastAuthor = " and " + authors.slice(-1);
-				authors.pop();
-				authors = authors.join(", ");
-				authors += lastAuthor;
-			}
-		} else {
-			authors = "Author not provided";
-		}
-		return authors;
-	};
+    // const bookAuthors = (authors) => {
+	// 	if (authors) {
+	// 		if (authors.length <= 2) {
+	// 			authors = authors.join(" and ");
+	// 		} else if (authors.length > 2) {
+	// 			let lastAuthor = " and " + authors.slice(-1);
+	// 			authors.pop();
+	// 			authors = authors.join(", ");
+	// 			authors += lastAuthor;
+	// 		}
+	// 	} else {
+	// 		authors = "Author not provided";
+	// 	}
+	// 	return authors;
+	// };
 
     const onSubmitHandler = (e) => {
         // Prevent browser refreshing after form submission
@@ -62,47 +65,17 @@ function Search() {
     }
 
     return (
-        <section>
-            <form onSubmit={onSubmitHandler}>
-                <label>
-                    <span>Search for books</span>
-                    <input
-                        type="search"
-                        placeholder="microservice, restful design, etc.,"
-                        value={searchTerm}
-                        onChange={onInputChange}
-                        required
-                    />
-                    <button type="submit">Search</button>
-                </label>
-                {
-                    error && <div style={{color: `red`}}>some error occurred, while fetching api</div>
-                }
-            </form>
-            {
-                 loading && <div style={{color: `green`}}>fetching books for "<strong>{searchTerm}</strong>"</div>
-            }
-            <ul>
-                {
-                    books.items.map((book, index) => {
-                        return (
-                            <li key={index}>
-                                <div>
-                                    <img alt={`${book.volumeInfo.title} book`} src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&source=gbs_api`} />
-                                    <div>
-                                        <h3>{book.volumeInfo.title}</h3>
-                                        <p>{bookAuthors(book.volumeInfo.authors)}</p>
-                                        <p>{book.volumeInfo.publishedDate}</p>
-                                    </div>
-                                </div>
-                                <hr />
-                            </li>
-                        );
-                    })
-                }
-            </ul>
-        </section>
-    );
-};
+        <>
+        <BookSearchForm
+            onSubmitHandler={onSubmitHandler}
+            onInputChange={onInputChange}
+            searchTerm={searchTerm}
+            error={error}
+        />
+        <Loader searchTerm={searchTerm} loading={loading} />
+        <BooksList books={books} />
+    </>
+    )
+}    
 
 export default Search;

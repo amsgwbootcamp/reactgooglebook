@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 
-const Book = require("./client/models/books");
+const Book = require("./models/book");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", { useNewUrlParser: true });
 const PORT = process.env.PORT || 3001;

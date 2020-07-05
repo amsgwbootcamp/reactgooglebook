@@ -1,4 +1,5 @@
 import React from 'react';
+import API from "../../utils/API";
 import "./style.css";
 
 // Separate the UI specific transforming logic to utils folder
@@ -19,12 +20,30 @@ const bookAuthors = (authors) => {
   return authors;
 }
 
+function handleSave(book) {
+  // event.preventDefault();
+  console.log(book);
+  API.saveBook({
+
+   title: book.volumeInfo.title,
+   authors: book.volumeInfo.authors,
+   description: book.volumeInfo.description,
+   image: book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg",
+   link: book.volumeInfo.infoLink
+ })
+ .then(results => {
+   console.log(results);
+ })
+   // .then(res => loadBooks())
+   .catch(err => console.log(err));
+};
+
 const Book = ({ book }) => {
   return (
     <div>
       <div className="row" key={book.id}>
           <div className="col">{book.volumeInfo.title}
-            <button onClick={() => book.saveBook(book.id)} className="save">Save</button>
+            <button onClick={() => handleSave(book)} className="save">Save</button>
             <button><a href={book.volumeInfo.infoLink} target="_blank" className="view">View</a></button>
           </div>
       </div>

@@ -6,13 +6,7 @@ import BooksList from "../components/BooksList";
 
 function Search() {
     let API_URL = `https://www.googleapis.com/books/v1/volumes`;
-    // Code to test bookAuthors function:
-    // let authors = ['Param', 'Vennila', 'Afrin'];
-    // bookAuthors(authors);
-    // // Param, Vennila and Afrin
-    // let authors = ['Param', 'Afrin'];
-    // bookAuthors(authors);
-
+    
     const [books, setBooks] = useState({ items: [] });
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -23,10 +17,8 @@ function Search() {
         setSearchTerm(e.target.value);
     }
 
-    const fetchBooks = async () => {
-        // Books result
-        //console.log(result.data);
-        // set loading Before API operation starts
+    const fetchBook = async () => {
+       
         setLoading(true);
         setError(false);
         try {
@@ -41,27 +33,11 @@ function Search() {
         setLoading(false);
     }
 
-    // const bookAuthors = (authors) => {
-	// 	if (authors) {
-	// 		if (authors.length <= 2) {
-	// 			authors = authors.join(" and ");
-	// 		} else if (authors.length > 2) {
-	// 			let lastAuthor = " and " + authors.slice(-1);
-	// 			authors.pop();
-	// 			authors = authors.join(", ");
-	// 			authors += lastAuthor;
-	// 		}
-	// 	} else {
-	// 		authors = "Author not provided";
-	// 	}
-	// 	return authors;
-	// };
-
     const onSubmitHandler = (e) => {
         // Prevent browser refreshing after form submission
         e.preventDefault();
         // Call fetch books async function
-        fetchBooks();
+        fetchBook();
     }
 
     return (

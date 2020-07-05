@@ -1,4 +1,5 @@
 import React from 'react';
+import "./style.css";
 
 const BookSearchForm = ({
   onSubmitHandler,
@@ -9,15 +10,14 @@ const BookSearchForm = ({
   return (
     <form onSubmit={onSubmitHandler}>
       <label>
-        <span>Search for books</span>
-        <input
+        <input 
           type="search"
-          placeholder="microservice, restful design, etc.,"
+          placeholder="Enter the book to search on"
           value={searchTerm}
           onChange={onInputChange}
           required
         />
-        <button type="submit">Search</button>
+      <button type="submit">Search</button>
       </label>
       {error && (
         <div style={{ color: `red` }}>

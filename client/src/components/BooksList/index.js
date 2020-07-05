@@ -40,11 +40,12 @@ function handleSave(book) {
 
 const Book = ({ book }) => {
   return (
-    <div>
+     <div>
+      <h3>Results</h3>
       <div className="row" key={book.id}>
           <div className="col">{book.volumeInfo.title}
             <button onClick={() => handleSave(book)} className="save">Save</button>
-            <button><a href={book.volumeInfo.infoLink} target="_blank" className="view">View</a></button>
+            <button><a href={book.volumeInfo.infoLink} target="_blank" rel="noopener noreferrer" className="view">View</a></button>
           </div>
       </div>
       <div className="row">  

@@ -20,11 +20,8 @@ const BookSchema = new Schema({
   link: { 
     type: String, 
     trim: true 
-  },
-  bookId: {
-    
   }
-});
+ });
 
 const Book = mongoose.model("Book", BookSchema);
 

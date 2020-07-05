@@ -40,7 +40,7 @@ function handleSave(book) {
 
 const Book = ({ book }) => {
   return (
-     <div>
+      <div>
       <h3>Results</h3>
       <div className="row" key={book.id}>
           <div className="col">{book.volumeInfo.title}
@@ -61,14 +61,16 @@ const Book = ({ book }) => {
           <span className="text">{book.volumeInfo.description}</span> 
         </div>
       </div>  
-      </div>
+      </div> 
   );
 };
 
 const BooksList = ({ books }) => {
-  return (
+    return (
     <ul>
+
       {books.items.map((book, index) => {
+        
         return <Book book={book} key={index} />;
       })}
     </ul>

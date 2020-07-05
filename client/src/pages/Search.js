@@ -49,7 +49,9 @@ function Search() {
             error={error}
         />
         <Loader searchTerm={searchTerm} loading={loading} />
-        <BooksList books={books} />
+        {books.totalItems != 0 ? (
+        <BooksList books={books} /> ) : 
+        <h3>No results to display</h3> }
     </>
     )
 }    

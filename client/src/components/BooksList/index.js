@@ -41,7 +41,6 @@ function handleSave(book) {
 const Book = ({ book }) => {
   return (
       <div>
-      <h3>Results</h3>
       <div className="row" key={book.id}>
           <div className="col">{book.volumeInfo.title}
             <button onClick={() => handleSave(book)} className="save">Save</button>
@@ -56,8 +55,15 @@ const Book = ({ book }) => {
       </div>  
       <div className="row">
         <div className="col img-fluid" >
-          <img alt={`${book.volumeInfo.title} book`}
-           src={`http://books.google.com/books/content?id=${book.id}&printsec=frontcover&img=1&zoom=1&source=gbs_api`} />
+        <img
+						alt={`${book.volumeInfo.title} book`}
+						// src={book.volumeInfo.imageLinks.thumbnail} />
+						src={
+							book.volumeInfo.imageLinks
+								? book.volumeInfo.imageLinks.thumbnail
+								: "https://thumbs.dreamstime.com/b/no-image-available-icon-flat-vector-no-image-available-icon-flat-vector-illustration-132482930.jpg"
+						}
+					/>
           <span className="text">{book.volumeInfo.description}</span> 
         </div>
       </div>  

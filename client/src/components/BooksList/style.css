@@ -1,13 +1,13 @@
 button {
     float: right;
     text-decoration: none;
-  
 }
 
 img {
     float:left;
+    width: 128px;
 }
 
-text {
+/* text {
     float:right;
-}
+} */

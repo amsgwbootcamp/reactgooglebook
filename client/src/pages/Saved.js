@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
-import "../pages/style.css";
+
 
 function Saved() {
   // Setting our component's initial state
@@ -69,16 +69,18 @@ function Saved() {
               </Col>
               <Col size="md-6">
                  <button onClick={() => deleteBook(book._id)} className="delete">Delete</button>
-                 <button><a href={book.link} target="_blank" rel="noopener noreferrer" className="view">View</a></button>
+                 <button><a href={book.link} styletarget="_blank" rel="noopener noreferrer" className="view">View</a></button>
                </Col>
               </Row>
               <Row>
                 <Col size="md-6">{book.author}</Col>
               </Row> 
               <Row>
-                <Col size="md-6">
+                <Col size="md-3">
                 <img alt={`${book.title} book`}
            src={book.image} />
+                </Col>
+                <Col size="md-9">
           <span className="text">{book.description}</span> 
                 </Col>
               </Row>

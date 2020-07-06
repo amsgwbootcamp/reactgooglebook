@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 
 const Book = require("./models/book");
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || 
+  "mongodb://user:password1@ds027761.mlab.com:27761/heroku_6kd0j3x6", { useNewUrlParser: true });
 const PORT = process.env.PORT || 3001;
 const app = express();
 

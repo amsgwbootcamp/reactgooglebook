@@ -29,14 +29,14 @@ function Saved() {
 
   return (
     <Container fluid className="saved">
-      <Row>
+     <Row>
         <Col size="md-0"><h4>Saved Books</h4></Col>
       </Row>
          {books.length ? (
             books.map(book => (
-              <>
+              <div className="outer" key={book._id}>
               <Row>  
-              <Col size="md-6" key={book._id}>
+              <Col size="md-6">
                 {book.title}
               </Col>
               <Col size="md-6">
@@ -56,9 +56,11 @@ function Saved() {
           <span className="text">{book.description}</span> 
                 </Col>
               </Row>
-              </>  
-            ))) : (<h4>No Results to Display</h4>)} 
+              </div>            
+                   ))) : (<h4>No Results to Display</h4>)} 
+
     </Container >
+  
   );
 }
 

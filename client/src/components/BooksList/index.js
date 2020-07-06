@@ -73,11 +73,14 @@ const Book = ({ book }) => {
 
 const BooksList = ({ books }) => {
     return (
+    <>
+    <h4>Search Results</h4>  
     <ul>
       {books.items.map((book, index) => {
         return <Book book={book} key={index} />;
       })}
     </ul>
+    </>
   );
 };
 

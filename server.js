@@ -2,8 +2,11 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 
+// mongoose.connect(process.env.MONGODB_URI || 
+//   "mongodb://localhost/googlebooks", { useNewUrlParser: true });
+// const PORT = process.env.PORT || 3001;
 mongoose.connect(process.env.MONGODB_URI || 
-  "mongodb://localhost/googlebooks", { useNewUrlParser: true });
+  "mongodb://user:password1@ds149875.mlab.com:49875/heroku_4p266cnt", { useNewUrlParser: true });
 const PORT = process.env.PORT || 3001;
 const app = express();
 

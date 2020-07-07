@@ -2,9 +2,7 @@ const mongoose = require("mongoose");
 const db = require("../models");
 // This file empties the Books collection and inserts the books below
 mongoose.connect(
-  process.env.MONGODB_URI ||
-  "mongodb://user:password1@ds027761.mlab.com:27761/heroku_6kd0j3x6"
-);
+  process.env.MONGODB_URI ||  "mongodb://localhost/googlebooks");
 const bookSeed = [
   {
 		title: "Jurassic Park: The Deluxe Novelization (Jurassic Park)",
